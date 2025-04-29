@@ -4,10 +4,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 @Service
 public class BotService {
+
+
+    private final OpenAIService openAIService;
 
     private final HashMap<String, String> responses = new HashMap<>(
             Map.of(
@@ -21,8 +23,14 @@ public class BotService {
             )
     );
 
-    public String returnMessage(String input) {
-        String response = responses.get(input.toLowerCase());
-        return Objects.requireNonNullElse(response, "Desculpe, não entendi sua pergunta. Resposta: " + input);
+    public BotService(OpenAIService openAIService) {
+        this.openAIService = openAIService;
+
+    }
+
+    public String talkBotAPI(String input) {
+        String chatResponse = openAIService.chatAPI(input);
+        System.out.println(chatResponse);
+        return chatResponse;
     }
 }
