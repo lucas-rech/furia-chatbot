@@ -1,6 +1,7 @@
 package com.lucasrech.furiaapi.services;
 
 import com.lucasrech.furiaapi.util.ReadFiles;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -10,6 +11,9 @@ public class BotService {
 
 
     private final GPAPIService gpapiService;
+
+    @Value("${quotes.file.path}")
+    private String quotesFilePath;
 
 
     public BotService(GPAPIService GPAPIService) {
@@ -33,7 +37,7 @@ public class BotService {
 
     private HashMap<String, String> getQuotes() {
         HashMap<String, String> quotes = new HashMap<>();
-        ReadFiles.readQuotesFile("src/main/resources/static/quotes.csv", quotes);
+        ReadFiles.readQuotesFile(quotesFilePath, quotes);
         return quotes;
     }
 }

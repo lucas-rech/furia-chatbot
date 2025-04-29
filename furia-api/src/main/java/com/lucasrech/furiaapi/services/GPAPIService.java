@@ -1,6 +1,7 @@
 package com.lucasrech.furiaapi.services;
 
 import com.lucasrech.furiaapi.dtos.gpapi.CompletionResponse;
+import com.lucasrech.furiaapi.util.ReadFiles;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
@@ -12,24 +13,30 @@ import java.util.Map;
 
 @Service
 public class GPAPIService {
+
     private final WebClient webClient;
+
+    @Value("${prompt.api.path}")
+    private String promptPath;
 
     @Value("${groq.api.key}")
     private String apiKey;
 
-    public GPAPIService(WebClient.Builder webClientBuilder) {
-        this.webClient = webClientBuilder.baseUrl("https://api.groq.com/openai/v1").build();
+    public GPAPIService(WebClient.Builder webClientBuilder, @Value("${groq.api.url}") String apiUrl) {
+        this.webClient = webClientBuilder.baseUrl(apiUrl).build();
     }
 
     public String chatAPI(String inputMessage) {
+
         Map<String, Object> requestBody = new HashMap<>();
+        String prompt = ReadFiles.readPromptFile(promptPath);
+
         requestBody.put("model", "meta-llama/llama-4-scout-17b-16e-instruct");
         requestBody.put("messages", List.of(Map.of(
                 "role", "user",
-                "content", "Considere que você é um chatbot da Furia eSPorts, chamado Panto. Você é um assistente web e auxilia fãs especificamente do time de Counter Strike. Baseado nisso, responda: " + inputMessage
+                "content",  prompt + inputMessage
         )));
         CompletionResponse response = webClient.post()
-                .uri("/chat/completions")
                 .header("Authorization", "Bearer " + apiKey)
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(requestBody)
