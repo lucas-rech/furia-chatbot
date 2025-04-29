@@ -1,4 +1,6 @@
 package com.lucasrech.furiaapi.dtos;
 
-public record RequestDTO() {
+public record RequestDTO(
+        String input
+) {
 }
