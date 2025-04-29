@@ -27,4 +27,17 @@ public class ReadFiles {
 
     }
 
+    public static String readPromptFile(String filePath) {
+        StringBuilder prompt = new StringBuilder();
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String linha;
+            while ((linha = br.readLine()) != null) {
+                prompt.append(linha).append("\n");
+            }
+        } catch (IOException e) {
+            System.out.println("Erro ao ler o arquivo: " + e.getMessage());
+        }
+        return prompt.toString();
+    }
+
 }
