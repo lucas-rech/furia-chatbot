@@ -1,6 +1,6 @@
 package com.lucasrech.furiaapi.services;
 
-import com.lucasrech.furiaapi.dtos.grok.CompletionResponse;
+import com.lucasrech.furiaapi.dtos.gpapi.CompletionResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
