@@ -18,7 +18,7 @@ public class BotController {
     }
 
     @PostMapping
-    public ResponseEntity<ResponseDTO> talkBot(@RequestBody RequestDTO requestDTO) {
+    public ResponseEntity<ResponseDTO> talkBot(@RequestBody RequestDTO requestDTO) throws Exception {
         String response = botService.talkBot(requestDTO.input());
 
         return ResponseEntity.ok()
