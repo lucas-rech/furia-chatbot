@@ -1,5 +1,6 @@
 package com.lucasrech.furiaapi.services;
 
+import com.lucasrech.furiaapi.util.QuestionMatcher;
 import com.lucasrech.furiaapi.util.ReadFiles;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -21,9 +22,8 @@ public class BotService {
 
     }
 
-    public String talkBot(String input) {
-        String response = getQuotes().get(input.toLowerCase());
-        System.out.println(response);
+    public String talkBot(String input) throws Exception {
+        String response = QuestionMatcher.findBestMatch(getQuotes(), input);
         if (response != null) {
             return response;
         } else {
@@ -38,6 +38,7 @@ public class BotService {
     private HashMap<String, String> getQuotes() {
         HashMap<String, String> quotes = new HashMap<>();
         ReadFiles.readQuotesFile(quotesFilePath, quotes);
+
         return quotes;
     }
 }
