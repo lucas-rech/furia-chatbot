@@ -11,13 +11,13 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class OpenAIService {
+public class GPAPIService {
     private final WebClient webClient;
 
     @Value("${groq.api.key}")
     private String apiKey;
 
-    public OpenAIService(WebClient.Builder webClientBuilder) {
+    public GPAPIService(WebClient.Builder webClientBuilder) {
         this.webClient = webClientBuilder.baseUrl("https://api.groq.com/openai/v1").build();
     }
 

@@ -1,36 +1,41 @@
 package com.lucasrech.furiaapi.services;
 
+import com.lucasrech.furiaapi.util.ReadFiles;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
-import java.util.Map;
 
 @Service
 public class BotService {
 
 
-    private final OpenAIService openAIService;
+    private final GPAPIService gpapiService;
 
-    private final HashMap<String, String> responses = new HashMap<>(
-            Map.of(
-                    "oi", "Oi, tudo bem?",
-                    "tudo bem?", "Tudo ótimo, e você?",
-                    "qual seu nome?", "Meu nome é PANTO.",
-                    "quem é você?", "Eu sou o PANTO, um bot de exemplo.",
-                    "o que você faz?", "Eu sou um bot de exemplo, posso responder perguntas simples.",
-                    "qual é a sua cor favorita?", "Minha cor favorita é preto!.",
-                    "qual é o seu time?", "Eu sou do time da Furia!"
-            )
-    );
 
-    public BotService(OpenAIService openAIService) {
-        this.openAIService = openAIService;
+    public BotService(GPAPIService GPAPIService) {
+        this.gpapiService = GPAPIService;
 
     }
 
-    public String talkBotAPI(String input) {
-        String chatResponse = openAIService.chatAPI(input);
-        System.out.println(chatResponse);
-        return chatResponse;
+    public String talkBot(String input) {
+        String response = getQuotes().get(input.toLowerCase());
+        System.out.println(response);
+        if (response != null) {
+            return response;
+        } else {
+            try {
+                return gpapiService.chatAPI(input);
+            } catch (Exception e) {
+                return "Desculpe, não consegui processar sua solicitação.";
+            }
+        }
+    }
+
+    private HashMap<String, String> getQuotes() {
+        HashMap<String, String> quotes = new HashMap<>();
+        ReadFiles.readQuotesFile("src/main/resources/static/quotes.csv", quotes);
+        return quotes;
     }
 }
+
+
