@@ -65,7 +65,7 @@ public class BotServiceTest {
     @Test
     void testTalkBotWithoutMatchFallbackToGPAPI() {
 
-        readFilesMocked.when(() -> ReadFiles.readQuotesFile(anyString(), any())).thenAnswer(invocation -> null);
+        readFilesMocked.when(() -> ReadFiles.readQuotesFile(anyString(), any())).thenAnswer(_ -> null);
         questionMatcherMocked.when(() -> QuestionMatcher.findBestMatch(any(), eq("Qual é a a fórmula para a entropia de Shannon?"))).thenReturn(null);
 
         when(gpapiService.chatAPI("Qual é a a fórmula para a entropia de Shannon?")).thenReturn("Resposta da API");
@@ -77,7 +77,7 @@ public class BotServiceTest {
     @Test
     void testTalkBotGPAPIException() {
         // Mock do ReadFiles
-        readFilesMocked.when(() -> ReadFiles.readQuotesFile(anyString(), any())).thenAnswer(invocation -> null);
+        readFilesMocked.when(() -> ReadFiles.readQuotesFile(anyString(), any())).thenAnswer(_ -> null);
 
         // Mock do QuestionMatcher
         questionMatcherMocked.when(() -> QuestionMatcher.findBestMatch(any(), eq("qual é a cor?"))).thenReturn(null);
