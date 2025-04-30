@@ -22,16 +22,12 @@ public class BotService {
 
     }
 
-    public String talkBot(String input) throws Exception {
+    public String talkBot(String input) {
         String response = QuestionMatcher.findBestMatch(getQuotes(), input);
         if (response != null) {
             return response;
         } else {
-            try {
-                return gpapiService.chatAPI(input);
-            } catch (Exception e) {
-                return "Desculpe, não consegui processar sua solicitação.";
-            }
+            return gpapiService.chatAPI(input);
         }
     }
 

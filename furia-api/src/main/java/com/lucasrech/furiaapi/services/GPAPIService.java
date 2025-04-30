@@ -1,6 +1,7 @@
 package com.lucasrech.furiaapi.services;
 
 import com.lucasrech.furiaapi.dtos.gpapi.CompletionResponse;
+import com.lucasrech.furiaapi.exceptions.TimeOutProcessingQuestion;
 import com.lucasrech.furiaapi.util.ReadFiles;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
@@ -47,7 +48,7 @@ public class GPAPIService {
         if (response != null && response.choices() != null) {
             return response.choices().getFirst().message().content();
         } else {
-            return "Desculpe, não consegui processar sua solicitação.";
+            throw new TimeOutProcessingQuestion();
         }
     }
 }
