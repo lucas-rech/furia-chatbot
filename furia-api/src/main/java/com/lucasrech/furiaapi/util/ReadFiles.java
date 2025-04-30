@@ -1,5 +1,6 @@
 package com.lucasrech.furiaapi.util;
 
+import com.lucasrech.furiaapi.exceptions.FileNotReadedException;
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvValidationException;
 
@@ -22,7 +23,7 @@ public class ReadFiles {
                 }
             }
         } catch (IOException | CsvValidationException e) {
-            System.out.println("Erro ao ler o arquivo: " + e.getMessage());
+             throw new FileNotReadedException("Error reading quotes file.");
         }
     }
 
@@ -34,7 +35,7 @@ public class ReadFiles {
                 prompt.append(linha).append("\n");
             }
         } catch (IOException e) {
-            System.out.println("Erro ao ler o arquivo: " + e.getMessage());
+            throw new FileNotReadedException("Error reading prompt file.");
         }
         return prompt.toString();
     }
