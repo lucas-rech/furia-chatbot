@@ -16,8 +16,8 @@ import java.util.Map;
  */
 public class QuestionMatcher {
 
-    private static final int MAX_DISTANCE = 20;
-    private static final double MIN_SIMILARITY = 0.85;
+    private static final int MAX_DISTANCE = 18;
+    private static final double MIN_SIMILARITY = 0.90;
 
 
     public static String findBestMatch(Map<String, String> quotes, String question) {
