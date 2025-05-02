@@ -39,6 +39,7 @@ export async function sendMessage(data: ChatRequest): Promise<ChatResponse> {
     }    
 }
 
+// Função que consome o endpoint da api externa
 export async function getShortcuts(): Promise<Shortcut[]> {
     try {
         const response = await fetch(`${API_URL}shortcuts`, {
@@ -70,19 +71,3 @@ export async function getShortcuts(): Promise<Shortcut[]> {
     }
 }
 
-export async function getCommands(): Promise<Map<string, string>> {
-    try {
-        const shortcuts = await getShortcuts(); 
-        const commands = new Map<string, string>();
-
-        // Adiciona o atalho e a descrição ao Map
-        for (const shortcut of shortcuts) {
-            commands.set(shortcut.description, shortcut.shortcut)
-        }
-
-        return commands;
-    } catch (error) {
-        console.error("Error fetching commands:", error);
-        throw new Error("Failed to fetch commands");
-    }
-}

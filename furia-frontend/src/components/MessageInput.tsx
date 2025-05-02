@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getCommands } from "../services/apiService";
+import { getCommands } from "../services/shortcutService";
 
 type Props = {
   onSend: (text: string) => void;
