@@ -1,5 +1,6 @@
 package com.lucasrech.furiaapi.services;
 
+import com.lucasrech.furiaapi.dtos.ShortcutResponseDTO;
 import com.lucasrech.furiaapi.util.QuestionMatcher;
 import com.lucasrech.furiaapi.util.ReadFiles;
 import org.springframework.beans.factory.annotation.Value;
@@ -36,6 +37,17 @@ public class BotService {
         ReadFiles.readQuotesFile(quotesFilePath, quotes);
 
         return quotes;
+    }
+
+
+    public ShortcutResponseDTO[]  getShortcuts() {
+        HashMap<String, String> shortcuts = new HashMap<>();
+        ReadFiles.readShortcutsFile(quotesFilePath, shortcuts);
+
+
+        return shortcuts.entrySet().stream()
+                .map(entry -> new ShortcutResponseDTO(entry.getKey(), entry.getValue()))
+                .toArray(ShortcutResponseDTO[]::new);
     }
 }
 

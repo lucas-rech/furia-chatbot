@@ -2,6 +2,7 @@ package com.lucasrech.furiaapi.controller;
 
 import com.lucasrech.furiaapi.dtos.RequestDTO;
 import com.lucasrech.furiaapi.dtos.ResponseDTO;
+import com.lucasrech.furiaapi.dtos.ShortcutResponseDTO;
 import com.lucasrech.furiaapi.services.BotService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -24,5 +25,12 @@ public class BotController {
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_TYPE, "application/json")
                 .body(new ResponseDTO(response));
+    }
+
+    @GetMapping("/shortcuts")
+    public ResponseEntity<ShortcutResponseDTO[]> getAllShortcuts() {
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_TYPE, "application/json")
+                .body(botService.getShortcuts());
     }
 }

@@ -16,7 +16,7 @@ public class ReadFiles {
         try (CSVReader reader = new CSVReader(new FileReader(filePath))) {
             String[] line;
             while ((line = reader.readNext()) != null) {
-                if (line.length == 2) {
+                if (line.length == 3) {
                     String pergunta = line[0].trim();
                     String resposta = line[1].trim();
                     quotes.put(pergunta, resposta);
@@ -24,6 +24,21 @@ public class ReadFiles {
             }
         } catch (IOException | CsvValidationException e) {
              throw new FileNotReadedException("Error reading quotes file.");
+        }
+    }
+
+    public static void readShortcutsFile(String filePath, HashMap<String, String> shortcuts) {
+        try (CSVReader reader = new CSVReader(new FileReader(filePath))) {
+            String[] line;
+            while ((line = reader.readNext()) != null) {
+                if (line.length == 3) {
+                    String key = line[0].trim();
+                    String value = line[2].trim();
+                    shortcuts.put(key, value);
+                }
+            }
+        } catch (IOException | CsvValidationException e) {
+             throw new FileNotReadedException("Error reading shortcuts file.");
         }
     }
 

@@ -18,5 +18,9 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedOrigins(frontend)
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                 .allowCredentials(true);
+        registry.addMapping("/shortcuts")
+                .allowedOrigins(frontend)
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                .allowCredentials(true);
     }
 }
