@@ -6,12 +6,15 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  background-color: #242424;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background-size: cover;
+  background-image: url("./assets/background_wallpaper.png");
+  background-position: center;
 }
 
 body {
@@ -20,5 +23,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 10px;
+
+  background-color: rgba(0, 0, 0, 0.539);
 }

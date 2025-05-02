@@ -46,7 +46,7 @@ export default function Chat() {
   };
 
   return (
-    <div className="flex flex-col h-full max-w-[380px] mx-auto rounded-2xl bg-[#e5e5e5]">
+    <div className="flex flex-col h-full w-[380px] mx-auto rounded-2xl bg-[#3b3b3bd6]">
       <MessageList messages={messages} />
       <MessageInput onSend={handleSendMessage} />
     </div>

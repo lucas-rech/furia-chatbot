@@ -34,7 +34,7 @@ export default function Message({ message }: Props) {
 
   const messageStyles = isUser
     ? "bg-[#FF9900] text-white"
-    : "bg-[#272727] text-white";
+    : "bg-[#FFFFFF] text-black";
 
   return (
     <div className={`flex ${isUser ? "justify-end" : "justify-start"}`}>
