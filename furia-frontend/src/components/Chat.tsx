@@ -1,7 +1,7 @@
 import { useState } from "react";
 import MessageList from "./MessageList";
 import MessageInput from "./MessageInput";
-import { ChatResponse, sendMessage } from "../services/apiService.ts";
+import { ChatResponse, getShortcuts, sendMessage } from "../services/apiService.ts";
 
 type Sender = "user" | "bot";
 
@@ -11,9 +11,10 @@ export interface MessageType {
   sender: Sender;
 }
 
+
 export default function Chat() {
   const [messages, setMessages] = useState<MessageType[]>([]);
-
+  console.log(getShortcuts());
   const handleSendMessage = async (text: string) => {
     const userMessage: MessageType = {
       id: Date.now(),
