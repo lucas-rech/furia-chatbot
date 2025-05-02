@@ -14,10 +14,10 @@ export default function MessageInput({ onSend }: Props) {
   };
 
   return (
-    <div className="p-4 bg-white border-t flex">
+    <div className="p-4 bg-white flex rounded-b-2xl">
       <input
         type="text"
-        className="flex-1 border rounded-lg p-2 mr-2 focus:outline-none focus:ring"
+        className="flex-1 border-[1px] border-black rounded-lg p-2 mr-2 focus:outline-none focus:ring"
         placeholder="Digite sua mensagem..."
         value={text}
         onChange={(e) => setText(e.target.value)}
