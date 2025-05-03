@@ -47,24 +47,15 @@ export async function getShortcuts(): Promise<Shortcut[]> {
             headers: { "Content-Type": "application/json" },
         });
 
+        const result = await response.json();
         if (!response.ok) {
             const errorData: ErrorResponse = await response.json();
             throw new Error(errorData.error || "Unknown error");
         }
-
-        const result = await response.json();
-
         console.log(result)
-        // Verifica se o resultado é um array e contém os campos esperados
-        if (Array.isArray(result)) {
-            const shortcuts: Shortcut[] = result.map((item) => ({
-                shortcut: item.shortcut,
-                description: item.description,
-            }));
-            return shortcuts;
-        } else {
-            throw new Error("Invalid response format");
-        }
+        return result;
+
+        
     } catch (error) {
         console.error("Error fetching shortcuts:", error);
         throw new Error("Failed to fetch shortcuts");
