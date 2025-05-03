@@ -6,8 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import java.io.FileNotFoundException;
-
 
 @ControllerAdvice
 public class GlobalExceptionController {
@@ -21,7 +19,14 @@ public class GlobalExceptionController {
 
     @ExceptionHandler(FileNotReadedException.class)
     public ResponseEntity<ErrorResponseDTO> fileNotFoundException(FileNotReadedException ex) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(
+        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body(
+                new ErrorResponseDTO(ex.getMessage())
+        );
+    }
+
+    @ExceptionHandler(EmptyInputException.class)
+    public ResponseEntity<ErrorResponseDTO> emptyInputException(EmptyInputException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
                 new ErrorResponseDTO(ex.getMessage())
         );
     }
