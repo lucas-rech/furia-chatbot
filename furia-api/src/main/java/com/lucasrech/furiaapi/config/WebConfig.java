@@ -14,13 +14,13 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(@NonNull CorsRegistry registry) {
-        registry.addMapping("/")
+        registry.addMapping("/talk")
                 .allowedOrigins(frontend)
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                .allowedMethods("POST")
                 .allowCredentials(true);
         registry.addMapping("/shortcuts")
                 .allowedOrigins(frontend)
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                .allowedMethods("GET")
                 .allowCredentials(true);
     }
 }

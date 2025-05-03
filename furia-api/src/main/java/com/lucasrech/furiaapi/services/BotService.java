@@ -1,6 +1,7 @@
 package com.lucasrech.furiaapi.services;
 
 import com.lucasrech.furiaapi.dtos.ShortcutResponseDTO;
+import com.lucasrech.furiaapi.exceptions.EmptyInputException;
 import com.lucasrech.furiaapi.util.QuestionMatcher;
 import com.lucasrech.furiaapi.util.ReadFiles;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,6 +25,9 @@ public class BotService {
     }
 
     public String talkBot(String input) {
+        if(input == null || input.isEmpty()) {
+            throw new EmptyInputException();
+        }
         String response = QuestionMatcher.findBestMatch(getQuotes(), input);
         if (response != null) {
             return response;
