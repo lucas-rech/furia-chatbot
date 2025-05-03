@@ -93,7 +93,7 @@ export default function MessageInput({ onSend }: Props) {
   return (
     <div className="p-4 flex flex-col rounded-b-2xl relative">
       {showCommands && (
-        <div className="absolute bottom-full mb-2 bg-[#0606063b] rounded-lg shadow-lg p-2 w-[90%] max-h-40 overflow-y-auto">
+        <div className="absolute bottom-full mb-2 bg-[#060606ea] rounded-lg shadow-lg p-2 w-[90%] max-h-40 overflow-y-auto">
           {Array.from(commands.entries()).map(([shortcut, description], index) => (
             <div
               key={`${shortcut}-${index}`}
