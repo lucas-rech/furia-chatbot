@@ -32,7 +32,6 @@ export async function sendMessage(data: ChatRequest): Promise<ChatResponse> {
         }
 
         const result = await response.json();
-        console.log(result)
         return result as ChatResponse;
     } catch (error) {
         console.error("Error sending message:", error);
@@ -55,6 +54,7 @@ export async function getShortcuts(): Promise<Shortcut[]> {
 
         const result = await response.json();
 
+        console.log(result)
         // Verifica se o resultado é um array e contém os campos esperados
         if (Array.isArray(result)) {
             const shortcuts: Shortcut[] = result.map((item) => ({
