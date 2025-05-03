@@ -44,18 +44,30 @@ export async function getShortcuts(): Promise<Shortcut[]> {
     try {
         const response = await fetch(`${API_URL}/shortcuts`, {
             method: "GET",
-            headers: { "Content-Type": "application/json" },
+            headers: { 
+                "Content-Type": "application/json",
+                "ngrok-skip-browser-warning": "skip"
+             },
         });
 
-        const result = await response.json();
         if (!response.ok) {
             const errorData: ErrorResponse = await response.json();
             throw new Error(errorData.error || "Unknown error");
         }
-        console.log(result)
-        return result;
 
-        
+        const result = await response.json();
+
+        console.log(result)
+        // Verifica se o resultado é um array e contém os campos esperados
+        if (Array.isArray(result)) {
+            const shortcuts: Shortcut[] = result.map((item) => ({
+                shortcut: item.shortcut,
+                description: item.description,
+            }));
+            return shortcuts;
+        } else {
+            throw new Error("Invalid response format");
+        }
     } catch (error) {
         console.error("Error fetching shortcuts:", error);
         throw new Error("Failed to fetch shortcuts");
