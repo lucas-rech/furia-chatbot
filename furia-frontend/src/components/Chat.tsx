@@ -25,7 +25,6 @@ export default function Chat() {
 
     try {
       const data: ChatResponse = await sendMessage({ input: text });
-
       const botMessage: MessageType = {
         id: Date.now() + 1,
         text: data.response,
