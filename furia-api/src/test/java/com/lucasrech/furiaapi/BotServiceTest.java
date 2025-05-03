@@ -87,7 +87,7 @@ public class BotServiceTest {
 
         assertThatThrownBy(() -> botService.talkBot("qual é a cor?"))
                 .isInstanceOf(TimeOutProcessingQuestion.class)
-                .hasMessageContaining("Time over processing question");
+                .hasMessageContaining("Time out processing question");
     }
 
 
