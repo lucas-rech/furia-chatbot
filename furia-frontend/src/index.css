@@ -50,11 +50,11 @@ body {
 
 @media(max-height: 872px) {
   :root {
-    height: 160vh;
+    height: 180vh;
   }
 
   body {
-    height: 160vh;
+    height: 170vh;
   }
 }
 
