@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@tailwind utilities;
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -27,6 +29,10 @@ body {
   height: min(140vh, 100%);
   background-color: rgba(0, 0, 0, 0.539);
   
+}
+
+::-webkit-scrollbar {
+  width: auto;
 }
 
 @media (max-width: 767px) {

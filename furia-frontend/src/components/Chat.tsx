@@ -14,7 +14,6 @@ export interface MessageType {
 
 export default function Chat() {
   const [messages, setMessages] = useState<MessageType[]>([]);
-  console.log(getShortcuts());
   const handleSendMessage = async (text: string) => {
     const userMessage: MessageType = {
       id: Date.now(),

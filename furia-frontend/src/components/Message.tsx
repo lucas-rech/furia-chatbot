@@ -19,6 +19,11 @@ const SenderImage = ({ img, alt, className }: SenderImg & { className: string}) 
 
 export default function Message({ message }: Props) {
   const isUser = message.sender === "user";
+  const formatedMsg = message.text.split("\n").map((line, index) => (
+    <p key={index} className="mb-2 last:mb-0">
+      {line}
+    </p>
+  ));
 
   const botImage: SenderImg = {
     img: pantoImg,
@@ -40,7 +45,7 @@ export default function Message({ message }: Props) {
     <div className={`flex ${isUser ? "justify-end" : "justify-start"}`}>
       {!isUser && <SenderImage img={sender.img} alt={sender.alt} className="mr-2" />}
       <div className={`px-4 py-2 rounded-xl max-w-xs ${messageStyles}`}>
-        {message.text}
+        {formatedMsg}
       </div>
       {isUser && <SenderImage img={sender.img} alt={sender.alt} className="ml-2" />}
     </div>

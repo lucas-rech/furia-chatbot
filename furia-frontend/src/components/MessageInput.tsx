@@ -15,7 +15,6 @@ export default function MessageInput({ onSend }: Props) {
     const fetchCommands = async () => {
       try {
         const commandsData = await getCommands();
-        console.log("Comandos carregados:", commandsData); // Verifica os comandos carregados
         setCommands(commandsData);
       } catch (error) {
         console.error("Error fetching commands:", error);
@@ -94,18 +93,18 @@ export default function MessageInput({ onSend }: Props) {
   return (
     <div className="p-4 flex flex-col rounded-b-2xl relative">
       {showCommands && (
-        <div className="absolute bottom-full left-0 mb-2 bg-white border border-gray-300 rounded-lg shadow-lg p-2 w-full max-h-40 overflow-y-auto">
+        <div className="absolute bottom-full mb-2 bg-[#0606063b] rounded-lg shadow-lg p-2 w-[90%] max-h-40 overflow-y-auto">
           {Array.from(commands.entries()).map(([shortcut, description], index) => (
             <div
               key={`${shortcut}-${index}`}
               id={`command-${index}`}
               className={`cursor-pointer p-2 pl-3 rounded-lg ${
-                index === selectedCommandIndex ? "bg-gray-200" : "hover:bg-gray-100"
+                index === selectedCommandIndex ? "bg-[#ff8000] text-white" : "hover:bg-[#ff9900ba]"
               }`}
               onClick={() => handleCommandClick(shortcut)}
             >
-              <div className="font-bold">{shortcut}</div>
-              <div className="text-sm text-gray-500">{description}</div> {/* Exibe a descrição */}
+              <div className="font-bold text-white">{shortcut}</div>
+              <div className="text-sm text-white">{description}</div> {/* Exibe a descrição */}
             </div>
           ))}
         </div>
