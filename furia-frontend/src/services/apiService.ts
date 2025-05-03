@@ -20,7 +20,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 export async function sendMessage(data: ChatRequest): Promise<ChatResponse> {
     try {
-        const response = await fetch(API_URL, {
+        const response = await fetch(`${API_URL}/talk`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data)
@@ -43,7 +43,7 @@ export async function sendMessage(data: ChatRequest): Promise<ChatResponse> {
 // Função que consome o endpoint da api externa
 export async function getShortcuts(): Promise<Shortcut[]> {
     try {
-        const response = await fetch(`${API_URL}shortcuts`, {
+        const response = await fetch(`${API_URL}/shortcuts`, {
             method: "GET",
             headers: { "Content-Type": "application/json" },
         });
