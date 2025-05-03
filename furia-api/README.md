@@ -85,7 +85,10 @@ Define exceções personalizadas e um controlador global para tratá-las:
 
 ## Estrutura de Arquivos Importantes
 ### Atalhos e Respostas:
+Atualmente funciona como um `.csv` mas evoluirá para um banco de dados. 
 - **`quotes.csv:`** Contém perguntas, respostas e atalhos.
+  A estrutura das coluans do arquivo é seguida por `perguntas, respostas, atalhos`:
+  ![Screenshot de tabela quotes.csv](/docs/quotes.png)
 
 ### **Prompt de IA:** 
 - **`prompt.txt:`** Define o comportamento do chatbot ao interagir com o serviço de IA.
