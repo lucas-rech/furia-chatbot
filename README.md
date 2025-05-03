@@ -2,6 +2,9 @@
 
 Furia Chatbot é um projeto desenvolvido como parte de um desafio da Furia e-Sports. Trata-se de uma aplicação web de página única (SPA) que apresenta um chatbot temático de Counter-Strike (CS:GO). O chatbot, chamado Panto, é o mascote oficial da Furia e-Sports e interage com os usuários utilizando inteligência artificial e atalhos pré-configurados.
 
+![Desktop screenshot exemplo](/docs/screen_desktop.png)
+
+
 ## Tecnologias Utilizadas
 
 - **Frontend**: React, Vite, Tailwind CSS, TypeScript
@@ -21,7 +24,7 @@ Furia Chatbot é um projeto desenvolvido como parte de um desafio da Furia e-Spo
 ### Pré-requisitos
 
 - **Backend**:
-  - Java 17 ou superior
+  - Java 24
   - Maven
 - **Frontend**:
   - Node.js (versão 18 ou superior)
@@ -41,13 +44,18 @@ Furia Chatbot é um projeto desenvolvido como parte de um desafio da Furia e-Spo
     cd furia-api
     ```
 
-    Configure as variáveis de ambiente no arquivo **application.properties**:
+    Configure as variáveis de ambiente no arquivo **`application.properties`**:
     ```bash
+    spring.application.name=furia-api
+
     groq.api.url=<URL_DA_API_DE_IA>
     groq.api.key=<CHAVE_DA_API_DE_IA>
     quotes.file.path=src/main/resources/static/quotes.csv
     prompt.api.path=src/main/resources/static/prompt.txt
+    
     frontend.url=http://localhost:
+
+    springdoc.api-docs.path=/api-docs
     ```
 
 
