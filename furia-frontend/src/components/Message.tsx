@@ -38,8 +38,8 @@ export default function Message({ message }: Props) {
   const sender = isUser ? usrImage : botImage;
 
   const messageStyles = isUser
-    ? "bg-[#FF9900] text-white"
-    : "bg-[#FFFFFF] text-black";
+    ? "bg-[var(--color-secondary)] text-white"
+    : "bg-[var(--color-messagebot)] text-black";
 
   return (
     <div className={`flex ${isUser ? "justify-end" : "justify-start"}`}>

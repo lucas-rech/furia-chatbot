@@ -93,18 +93,18 @@ export default function MessageInput({ onSend }: Props) {
   return (
     <div className="p-4 flex flex-col rounded-b-2xl relative">
       {showCommands && (
-        <div className="absolute bottom-full mb-2 bg-[#060606ea] rounded-lg shadow-lg p-2 w-[90%] max-h-40 overflow-y-auto">
+        <div className="absolute bottom-full mb-2 bg-[var(--color-quote-background)] rounded-lg shadow-lg p-2 w-[90%] max-h-40 overflow-y-auto">
           {Array.from(commands.entries()).map(([shortcut, description], index) => (
             <div
               key={`${shortcut}-${index}`}
               id={`command-${index}`}
               className={`cursor-pointer p-2 pl-3 rounded-lg ${
-                index === selectedCommandIndex ? "bg-[#ff8000] text-white" : "hover:bg-[#ff9900ba]"
+                index === selectedCommandIndex ? "bg-[var(--color-action)] text-[var(--color-primary)]" : "hover:bg-[var(--color-secondary)]"
               }`}
               onClick={() => handleCommandClick(shortcut)}
             >
-              <div className="font-bold text-white">{shortcut}</div>
-              <div className="text-sm text-white">{description}</div> {/* Exibe a descrição */}
+              <div className="font-bold text-[var(--color-primary)]">{shortcut}</div>
+              <div className="text-sm text-[var(--color-primary)]">{description}</div> {/* Exibe a descrição */}
             </div>
           ))}
         </div>
@@ -112,7 +112,7 @@ export default function MessageInput({ onSend }: Props) {
       <div className="flex items-center">
         <input
           type="text"
-          className="flex-1 border-[1px] bg-[#ffffffe8] border-black rounded-lg p-2 mr-2 focus:outline-none focus:ring focus:border-[2px]"
+          className="flex-1 border-[1px] bg-[var(--color-messagebot)] text-[var(--color-quote-background)] border-[var(--color-background)] rounded-lg p-2 mr-2 focus:outline-none focus:ring focus:border-[2px]"
           placeholder="Digite sua mensagem..."
           value={text}
           onChange={handleInputChange}
@@ -120,7 +120,7 @@ export default function MessageInput({ onSend }: Props) {
         />
         <button
           onClick={handleSend}
-          className="bg-[#FF9900] w-[25%] text-white px-4 py-2 rounded-lg hover:bg-[#ff8000] hover:scale-105 transition"
+          className="bg-[var(--color-secondary)] w-[25%] text-[var(--color-primary)] font-bold px-4 py-2 rounded-lg hover:bg-[var(--color-action)] hover:scale-105 transition"
         >
           Enviar
         </button>

@@ -1,0 +1,11 @@
+:root {
+    --color-primary:  #f0f0f0;
+    --color-secondary: #FF9900;
+    --color-action: #ff8000;
+    --color-background: rgba(0, 0, 0, 0.539);
+    --color-messagebot: #FFFFFF;
+    --color-chat: #3b3b3bd6;
+
+    --color-quote-background: #060606ea;
+
+}
