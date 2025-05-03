@@ -14,6 +14,9 @@ function App() {
           com seu bom humor felino e comentários afiados. Sempre pronto pra arranhar a concorrência, 
           ele é a alma da torcida furiosa!
         </p>
+        <br /> <br />
+        <h2 className="text-1xl font-bold text-[#FF9900]">Comandos rápidos</h2>
+        <p>Utilize o comando <b>/</b> na conversa com o Panto para realizar ações rápidas.</p>
       </div>
       <div className="rounded-lg w-fit">
         <Chat />

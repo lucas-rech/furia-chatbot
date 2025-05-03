@@ -1,7 +1,7 @@
 import { useState } from "react";
 import MessageList from "./MessageList";
 import MessageInput from "./MessageInput";
-import { ChatResponse, getShortcuts, sendMessage } from "../services/apiService.ts";
+import { ChatResponse, sendMessage } from "../services/apiService.ts";
 
 type Sender = "user" | "bot";
 
@@ -38,7 +38,7 @@ export default function Chat() {
         ...prev,
         {
           id: Date.now() + 1,
-          text: "Erro ao conectar com o servidor.",
+          text: "Desculpe, não consigo ajudar no momento!",
           sender: "bot",
         },
       ]);
