@@ -8,6 +8,9 @@ export async function getCommands(): Promise<Map<string, string>> {
 
         // Adiciona o atalho e a descrição ao Map
         for (const shortcut of shortcuts) {
+            if(shortcut.shortcut[0] !== "/") {
+                continue;
+            }
             commands.set(shortcut.description, shortcut.shortcut)
         }
         
