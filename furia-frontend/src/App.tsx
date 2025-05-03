@@ -15,7 +15,7 @@ function App() {
           ele é a alma da torcida furiosa!
         </p>
         <br /> <br />
-        <h2 className="text-1xl font-bold text-[var(--color-secondary)">Comandos rápidos</h2>
+        <h2 className="text-1xl font-bold text-[var(--color-secondary)]">Comandos rápidos</h2>
         <p>Utilize o comando <b>/</b> na conversa com o Panto para realizar ações rápidas.</p>
       </div>
       <div className="rounded-lg w-fit">
