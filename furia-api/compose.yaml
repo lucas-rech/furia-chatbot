@@ -1,0 +1,10 @@
+services:
+  database:
+    image: 'postgres:17'
+    container_name: 'local_furiadb'
+    ports:
+      - '15432:5432'
+    environment:
+      - 'POSTGRES_USER=lucasrech'
+      - 'POSTGRES_DB=furia_db'
+      - 'POSTGRES_PASSWORD=furiachatbot'
