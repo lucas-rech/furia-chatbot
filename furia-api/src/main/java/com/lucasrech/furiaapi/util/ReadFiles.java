@@ -20,6 +20,10 @@ public class ReadFiles {
                     String pergunta = line[0].trim();
                     String resposta = line[1].trim();
                     quotes.put(pergunta, resposta);
+                } else if (line.length == 2) {
+                    String pergunta = line[0].trim();
+                    String resposta = line[1].trim();
+                    quotes.put(pergunta, resposta);
                 }
             }
         } catch (IOException | CsvValidationException e) {
