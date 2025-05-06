@@ -14,44 +14,27 @@ public class BotService {
 
 
     private final GPAPIService gpapiService;
+    private final QuoteService quoteService;
 
     @Value("${quotes.file.path}")
     private String quotesFilePath;
 
 
-    public BotService(GPAPIService GPAPIService) {
+    public BotService(GPAPIService GPAPIService, QuoteService quoteService) {
         this.gpapiService = GPAPIService;
-
+        this.quoteService = quoteService;
     }
 
     public String talkBot(String input) {
         if(input == null || input.isEmpty()) {
             throw new EmptyInputException();
         }
-        String response = QuestionMatcher.findBestMatch(getQuotes(), input);
+        String response = QuestionMatcher.findBestMatch(quoteService.getAllQuotes(), input);
         if (response != null) {
             return response;
         } else {
             return gpapiService.chatAPI(input);
         }
-    }
-
-    private HashMap<String, String> getQuotes() {
-        HashMap<String, String> quotes = new HashMap<>();
-        ReadFiles.readQuotesFile(quotesFilePath, quotes);
-
-        return quotes;
-    }
-
-
-    public ShortcutResponseDTO[]  getShortcuts() {
-        HashMap<String, String> shortcuts = new HashMap<>();
-        ReadFiles.readShortcutsFile(quotesFilePath, shortcuts);
-
-
-        return shortcuts.entrySet().stream()
-                .map(entry -> new ShortcutResponseDTO(entry.getKey(), entry.getValue()))
-                .toArray(ShortcutResponseDTO[]::new);
     }
 }
 

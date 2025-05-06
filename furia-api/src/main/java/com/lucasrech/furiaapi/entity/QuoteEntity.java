@@ -2,12 +2,13 @@ package com.lucasrech.furiaapi.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @NoArgsConstructor
 @Table(name = "quotes")
-@Data //Getters and Setters
 public class QuoteEntity {
 
     @Id
@@ -32,5 +33,17 @@ public class QuoteEntity {
     public QuoteEntity(String question, String answer) {
         this.question = question;
         this.answer = answer;
+    }
+
+    public String getQuestion() {
+        return question;
+    }
+
+    public String getAnswer() {
+        return answer;
+    }
+
+    public String getShortcut() {
+        return shortcut;
     }
 }
