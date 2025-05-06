@@ -3,7 +3,6 @@ package com.lucasrech.furiaapi.controller;
 import com.lucasrech.furiaapi.dtos.ErrorResponseDTO;
 import com.lucasrech.furiaapi.dtos.RequestDTO;
 import com.lucasrech.furiaapi.dtos.ResponseDTO;
-import com.lucasrech.furiaapi.dtos.ShortcutResponseDTO;
 import com.lucasrech.furiaapi.services.BotService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -49,25 +48,5 @@ public class BotController {
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_TYPE, "application/json")
                 .body(new ResponseDTO(response));
-    }
-
-    @GetMapping("/shortcuts")
-    @Operation(summary = "Requisita ao servidor um objeto contendo um HashMap de todos as respostas prontas cadastradas no servidor.")
-    @ApiResponses(value  = {
-            @ApiResponse(responseCode = "200", description = "Shortcut got successfully",
-                    content = {@Content(mediaType = "application/json",
-                            schema = @Schema(implementation = ResponseDTO.class))}),
-            @ApiResponse(responseCode = "408", description = "Time out processing data",
-                    content = {@Content(mediaType = "application/json",
-                            schema = @Schema(implementation = ErrorResponseDTO.class))}),
-            @ApiResponse(responseCode = "503", description = "Data files cannot be read",
-                    content = {@Content(mediaType = "application/json",
-                            schema = @Schema(implementation = ErrorResponseDTO.class))}),
-
-    })
-    public ResponseEntity<ShortcutResponseDTO[]> getAllShortcuts() {
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_TYPE, "application/json")
-                .body(botService.getShortcuts());
     }
 }
