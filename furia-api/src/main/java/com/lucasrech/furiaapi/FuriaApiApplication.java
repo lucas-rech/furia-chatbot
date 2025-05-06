@@ -1,5 +1,8 @@
 package com.lucasrech.furiaapi;
 
+import com.lucasrech.furiaapi.entity.QuoteEntity;
+import com.lucasrech.furiaapi.repository.QuoteRepository;
+import com.lucasrech.furiaapi.services.QuoteService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
