@@ -1,9 +1,11 @@
 package com.lucasrech.furiaapi.util;
 
+import com.lucasrech.furiaapi.entity.QuoteEntity;
 import org.apache.commons.text.similarity.LevenshteinDistance;
 
 import java.text.Normalizer;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -20,18 +22,21 @@ public class QuestionMatcher {
     private static final double MIN_SIMILARITY = 0.90;
 
 
-    public static String findBestMatch(Map<String, String> quotes, String question) {
+    public static String findBestMatch(List<QuoteEntity> quotes, String question) {
         LevenshteinDistance levenshtein = new LevenshteinDistance();
+        String normalizedQuestion = normalize(question);
         String bestMatch = null;
         int bestDistance = Integer.MAX_VALUE;
 
-        for(String quote : quotes.keySet()) {
-            int distance = levenshtein.apply(normalize(question), normalize(quote));
-            double similarity = calculateCosineSimilarity(normalize(question), normalize(quote));
+        for(QuoteEntity quote : quotes) {
+            String quoteText = normalize(quote.getQuestion());
+
+            int distance = levenshtein.apply(quoteText, quoteText);
+            double similarity = calculateCosineSimilarity(normalizedQuestion, quoteText);
 
             if (distance < bestDistance && distance <= MAX_DISTANCE && similarity >= MIN_SIMILARITY) {
                 bestDistance = distance;
-                bestMatch = quotes.get(quote);
+                bestMatch = quote.getAnswer();
             }
         }
 
